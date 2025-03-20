@@ -1,0 +1,3151 @@
+/* Основные переменные для единого стиля */
+:root {
+    /* Цветовая палитра (стимпанк/фэнтези) */
+    --primary-color: #8B4513;
+    --secondary-color: #CD853F;
+    --accent-color: #DAA520;
+    --bg-color: #F5F5DC;
+    --text-color: #4A3C31;
+    --light-color: #F8F4E3;
+    --dark-color: #3A2E24;
+    --success-color: #4CAF50;
+    --error-color: #F44336;
+    
+    /* Шрифты */
+    --title-font: 'Cinzel', serif;
+    --text-font: 'Lora', serif;
+    --ui-font: 'Roboto Condensed', sans-serif;
+}
+
+/* Принудительная вертикальная ориентация */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    height: 100%;
+}
+
+body {
+    font-family: var(--text-font);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+    background-image: url('https://cdnjs.cloudflare.com/ajax/libs/simple-backgrounds/1.0.0/subtle-papier.png');
+}
+
+/* Контейнер игры - с фиксированной максимальной шириной */
+#game-container {
+    width: 100%;
+    max-width: 500px; /* Фиксированная максимальная ширина */
+    margin: 0 auto;
+    padding: 10px;
+    background-color: rgba(245, 245, 220, 0.9);
+    min-height: 100vh;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+/* Основные стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--title-font);
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Заголовок */
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--secondary-color);
+    margin-bottom: 5px;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.login-button {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    opacity: 0.7;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.login-button:hover {
+    opacity: 1;
+}
+
+.game-title {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+}
+
+#player-name {
+    font-weight: bold;
+    font-family: var(--ui-font);
+}
+
+#player-gold {
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+/* Навигация */
+#main-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    padding: 5px 0 10px 0;
+    width: 100%;
+}
+
+.nav-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: 2px solid var(--accent-color);
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-family: var(--ui-font);
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    text-align: center;
+    margin: 0;
+}
+
+.nav-button:hover, .nav-button:active {
+    background-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Кнопки */
+.game-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: 2px solid var(--accent-color);
+    border-radius: 4px;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-family: var(--ui-font);
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.game-button:hover, .game-button:active {
+    background-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.game-button.secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.game-button.secondary:hover, .game-button.secondary:active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Убираем нижнюю навигацию */
+footer {
+    display: none;
+}
+
+/* Экраны */
+.game-screen {
+    display: none;
+    padding: 15px;
+    background-color: var(--light-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.game-screen.active {
+    display: block;
+}
+
+/* Контейнер локаций с прокруткой */
+#locations-container {
+    max-height: 500px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+#locations-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+#locations-container::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.1);
+}
+
+#locations-container::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color);
+    border-radius: 3px;
+}
+
+html, body {
+    max-width: 100%;
+    overflow: hidden; /* Запрещаем прокрутку всей страницы */
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+#game-container {
+    width: 100%;
+    max-width: 500px;
+    height: 100vh; /* Устанавливаем полную высоту вьюпорта */
+    margin: 0 auto;
+    padding: 10px;
+    background-color: rgba(245, 245, 220, 0.9);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Запрещаем прокрутку контейнера */
+    box-sizing: border-box;
+}
+
+#game-content {
+    flex-grow: 1;
+    overflow: hidden; /* Запрещаем прокрутку основного контента */
+    display: flex;
+    flex-direction: column;
+}
+
+.game-screen {
+    flex-grow: 1;
+    overflow-y: auto; /* Прокрутка только внутри экрана */
+    display: none;
+}
+
+.game-screen.active {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Стили для карточек инвентаря с кнопками продажи */
+.inventory-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--light-color);
+    border: 2px solid var(--secondary-color);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    transition: transform 0.3s;
+}
+
+.inventory-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.item-info {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-bottom: 8px;
+}
+
+.item-name {
+    font-weight: bold;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.item-amount {
+    color: var(--primary-color);
+    font-size: 0.8rem;
+}
+
+.item-rarity {
+    font-size: 0.7rem;
+    font-style: italic;
+}
+
+.item-actions {
+    width: 100%;
+}
+
+/* Стили для сетки инвентаря */
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+/* Стили для редкости ресурсов */
+.rarity-common {
+    border-color: #A0A0A0;
+    background-color: rgba(160, 160, 160, 0.2);
+}
+
+.rarity-uncommon {
+    border-color: #4CAF50;
+    background-color: rgba(76, 175, 80, 0.2);
+}
+
+.rarity-rare {
+    border-color: #2196F3;
+    background-color: rgba(33, 150, 243, 0.2);
+}
+
+.rarity-epic {
+    border-color: #9C27B0;
+    background-color: rgba(156, 39, 176, 0.2);
+}
+
+.rarity-legendary {
+    border-color: #FF9800;
+    background-color: rgba(255, 152, 0, 0.2);
+}
+
+/* Стили для страницы статистики */
+.stats-container {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed var(--secondary-color);
+}
+
+.stat-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.stat-label {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.stat-value {
+    font-family: var(--ui-font);
+    font-size: 1.1rem;
+}
+
+.stats-rarity-distribution {
+    margin-top: 20px;
+}
+
+.rarity-bars {
+    margin-top: 15px;
+}
+
+.rarity-bar-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.rarity-label {
+    width: 100px;
+    text-align: right;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.rarity-bar {
+    height: 24px;
+    min-width: 30px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    color: var(--dark-color);
+    font-weight: bold;
+    transition: width 0.5s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.rarity-bar.rarity-common {
+    background-color: #A0A0A0;
+    color: white;
+}
+
+.rarity-bar.rarity-uncommon {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.rarity-bar.rarity-rare {
+    background-color: #2196F3;
+    color: white;
+}
+
+.rarity-bar.rarity-epic {
+    background-color: #9C27B0;
+    color: white;
+}
+
+.rarity-bar.rarity-legendary {
+    background-color: #FF9800;
+    color: white;
+}
+
+/* Стили для модальных окон */
+#modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#modal-overlay.hidden {
+    display: none;
+}
+
+#modal-window {
+    background-color: var(--light-color);
+    border-radius: 8px;
+    width: 90%;
+    max-width: 450px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+#modal-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+#modal-title {
+    margin: 0;
+    font-size: 1.2rem;
+    color: white;
+}
+
+#modal-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0 5px;
+}
+
+#modal-content {
+    padding: 15px;
+}
+
+/* Стили для уведомлений */
+#notifications-area {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 280px;
+    z-index: 2000;
+}
+
+.notification {
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    background-color: var(--light-color);
+    border-left: 4px solid var(--primary-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    font-family: var(--ui-font);
+}
+
+.notification.success {
+    border-color: var(--success-color);
+}
+
+.notification.error {
+    border-color: var(--error-color);
+}
+
+.notification.info {
+    border-color: var(--accent-color);
+}
+
+/* Стили для формы продажи */
+.sell-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.sell-form input {
+    padding: 10px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 4px;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Стили для экрана аукциона */
+.auction-tab {
+    background-color: var(--light-color);
+    border: 1px solid var(--secondary-color);
+    border-bottom: none;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.auction-tab.active {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.auction-tab-content {
+    display: none;
+    padding: 15px;
+    border: 1px solid var(--secondary-color);
+}
+
+.auction-tab-content.active {
+    display: block;
+}
+
+
+/* Стили для системы автоматической добычи ресурсов */
+
+/* Анимация индикатора добычи */
+@keyframes pulse {
+    0% { opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { opacity: 0.7; }
+}
+
+.mining-active {
+    animation: pulse 1.5s infinite;
+    background-color: var(--error-color) !important;
+    border-color: var(--error-color) !important;
+}
+
+/* Обновленные стили для карточек ресурсов */
+.resource-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--light-color);
+    border: 2px solid var(--secondary-color);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    transition: transform 0.3s;
+}
+
+.resource-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.resource-name {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.resource-rarity {
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+.resource-stats {
+    text-align: right;
+    font-size: 0.9rem;
+}
+
+#mining-results-section {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#mining-log {
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+    font-family: var(--ui-font);
+    font-size: 0.9rem;
+}
+
+.mining-result {
+    padding: 8px;
+    margin-bottom: 6px;
+    border-left: 3px solid transparent;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+.mining-result:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.mining-success {
+    color: var(--success-color);
+    border-left-color: var(--success-color);
+}
+
+.mining-failure {
+    color: var(--error-color);
+    opacity: 0.8;
+    border-left-color: var(--error-color);
+}
+
+/* Полоса прокрутки для журнала */
+#mining-log::-webkit-scrollbar {
+    width: 6px;
+}
+
+#mining-log::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 3px;
+}
+
+#mining-log::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color);
+    border-radius: 3px;
+}
+
+/* Стили для подписи о сортировке */
+.sort-info {
+    font-size: 0.8rem;
+    color: var(--text-color);
+    opacity: 0.7;
+    text-align: right;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+/* Стили для информации о вероятности добычи */
+.location-difficulty-info {
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-style: italic;
+}
+
+.resources-list {
+    margin-top: 15px;
+}
+
+.resource-probability {
+    font-style: italic;
+}
+
+/* Стили для управления добычей */
+.mining-controls {
+    margin: 15px 0;
+    text-align: center;
+}
+
+
+
+/* Стили для таблицы ресурсов */
+.resources-table-container {
+    margin-top: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    background-color: var(--light-color);
+}
+
+.resources-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--ui-font);
+}
+
+.resources-table th {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: left;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.resources-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.resource-row:last-child td {
+    border-bottom: none;
+}
+
+.resource-row:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.resource-name-col {
+    width: 35%;
+}
+
+.resource-rarity-col {
+    width: 25%;
+}
+
+.resource-yield-col,
+.resource-probability-col {
+    width: 20%;
+    text-align: center;
+}
+
+.resource-name {
+    font-weight: bold;
+}
+
+.resource-yield,
+.resource-probability {
+    text-align: center;
+}
+
+/* Стили для ресурсов разной редкости */
+.resource-row.rarity-common {
+    background-color: rgba(160, 160, 160, 0.1);
+}
+
+.resource-row.rarity-uncommon {
+    background-color: rgba(76, 175, 80, 0.1);
+}
+
+.resource-row.rarity-rare {
+    background-color: rgba(33, 150, 243, 0.1);
+}
+
+.resource-row.rarity-epic {
+    background-color: rgba(156, 39, 176, 0.1);
+}
+
+.resource-row.rarity-legendary {
+    background-color: rgba(255, 152, 0, 0.1);
+}
+
+/* Улучшенные стили для прогресс-бара */
+.mining-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px 0;
+}
+
+
+
+    .resources-table-container {
+        margin-top: 20px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        background-color: var(--light-color);
+    }
+    
+    .resources-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: var(--ui-font);
+    }
+    
+    .resources-table th {
+        background-color: var(--primary-color);
+        color: white;
+        text-align: left;
+        padding: 10px;
+        font-weight: bold;
+        font-size: 0.9rem;
+    }
+    
+    .resources-table td {
+        padding: 12px 10px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    .resource-row:last-child td {
+        border-bottom: none;
+    }
+    
+    .resource-row:hover {
+        background-color: rgba(255, 255, 255, 0.4);
+    }
+    
+    .resource-name-col {
+        width: 35%;
+    }
+    
+    .resource-rarity-col {
+        width: 25%;
+    }
+    
+    .resource-yield-col,
+    .resource-probability-col {
+        width: 20%;
+        text-align: center;
+    }
+    
+    .resource-name {
+        font-weight: bold;
+    }
+    
+    .resource-yield,
+    .resource-probability {
+        text-align: center;
+    }
+    
+    /* Стили для ресурсов разной редкости в таблице */
+    .resource-row.rarity-common {
+        background-color: rgba(160, 160, 160, 0.1);
+    }
+    
+    .resource-row.rarity-uncommon {
+        background-color: rgba(76, 175, 80, 0.1);
+    }
+    
+    .resource-row.rarity-rare {
+        background-color: rgba(33, 150, 243, 0.1);
+    }
+    
+    .resource-row.rarity-epic {
+        background-color: rgba(156, 39, 176, 0.1);
+    }
+    
+    .resource-row.rarity-legendary {
+        background-color: rgba(255, 152, 0, 0.1);
+    }
+    
+    /* Улучшенные стили для прогресс-бара и элементов управления добычей */
+    .mining-controls {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 15px 0;
+        width: 100%;
+    }
+    
+
+    
+      #mining-progress-section {
+        width: 80%;
+        max-width: 300px;
+        margin: 10px auto;
+        padding: 5px;
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .progress-bar-container {
+        width: 100%;
+        height: 15px;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+    
+    .progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        width: 0%;
+        border-radius: 10px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+    
+/* Стили для журнала добычи */
+#mining-log {
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.mining-result {
+    padding: 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.mining-success {
+    color: var(--success-color);
+}
+
+.mining-failure {
+    color: var(--error-color);
+    opacity: 0.8;
+}
+    /* Стили для кнопки "Назад к локациям" */
+#back-to-locations {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    box-shadow: none;
+    margin-left: 10px;
+}
+
+#back-to-locations:hover {
+    background-color: rgba(139, 69, 19, 0.1);
+    transform: none;
+    box-shadow: none;
+}
+
+#location-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+#location-name {
+    margin-bottom: 0;
+}
+
+/* Стили для кнопки "Назад" */
+#back-to-locations {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 4px;
+    padding: 6px 10px;  /* Уменьшенный padding */
+    font-size: 0.8rem;  /* Уменьшенный размер шрифта */
+    box-shadow: none;
+    margin-left: 10px;
+    width: auto;        /* Автоматическая ширина вместо 100% */
+}
+
+#back-to-locations:hover {
+    background-color: rgba(139, 69, 19, 0.1);
+    transform: none;
+    box-shadow: none;
+}
+
+#location-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+#location-name {
+    margin-bottom: 0;
+}
+
+/* Стили для журнала добычи */
+#mining-results-section {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#mining-log {
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+    font-family: var(--ui-font);
+    font-size: 0.9rem;
+}
+
+.mining-result {
+    padding: 8px;
+    margin-bottom: 6px;
+    border-left: 3px solid transparent;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+.mining-result:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.mining-success {
+    color: var(--success-color);
+    border-left-color: var(--success-color);
+}
+
+.mining-failure {
+    color: var(--error-color);
+    opacity: 0.8;
+    border-left-color: var(--error-color);
+}
+
+/* Полоса прокрутки для журнала */
+#mining-log::-webkit-scrollbar {
+    width: 6px;
+}
+
+#mining-log::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 3px;
+}
+
+#mining-log::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color);
+    border-radius: 3px;
+}
+
+/* Стили для управления добычей */
+.mining-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px 0 5px 0; /* Уменьшенный нижний отступ */
+    width: 100%;
+}
+/* Стили для прогресс-бара */
+#mining-progress-section {
+    width: 80%;
+    max-width: 300px;
+    margin: 0 auto 15px auto; /* Отступы сверху и снизу */
+    padding: 5px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 12px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    width: 0%;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Стили для списка ресурсов */
+.resources-list {
+    margin-top: 10px; /* Уменьшенный отступ сверху */
+}
+
+/* Анимация индикатора добычи */
+@keyframes pulse {
+    0% { opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { opacity: 0.7; }
+}
+
+.mining-active {
+    animation: pulse 1.5s infinite;
+    background-color: var(--error-color) !important;
+    border-color: var(--error-color) !important;
+}
+/* Стили для компактного отображения локаций */
+.locations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.location-card-compact {
+    background-color: var(--light-color);
+    border: 2px solid var(--secondary-color);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.location-card-compact:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.location-image-compact {
+    height: 100px;
+    background-size: cover;
+    background-position: center;
+}
+
+.location-info-compact {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+    gap: 5px; /* Добавляем промежуток между элементами */
+    cursor: pointer;
+}
+
+.location-name-compact {
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 10px;
+    font-family: var(--title-font);
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+/* Стили для кнопки исследования в компактной карточке */
+.location-card-compact .game-button {
+    width: 100%; /* На всю ширину контейнера */
+    padding: 8px; /* Меньший padding */
+    font-size: 0.9rem; /* Меньший шрифт */
+    margin: 0; /* Убираем отступы */
+}
+
+/* Улучшенные стили для прогресс-бара и счетчика времени */
+#mining-progress-section {
+    width: 80%;
+    max-width: 300px;
+    margin: 5px auto 15px auto;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 15px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+    margin-top: 5px;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    width: 0%;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Стили для таблиц ресурсов */
+.resources-table-container {
+    margin-top: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    background-color: var(--light-color);
+}
+
+.resources-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--ui-font);
+}
+
+.resources-table th {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: left;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.resources-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.resource-row:last-child td {
+    border-bottom: none;
+}
+
+.resource-row:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.resource-name-col {
+    width: 35%;
+}
+
+.resource-rarity-col {
+    width: 25%;
+}
+
+.resource-yield-col,
+.resource-probability-col {
+    width: 20%;
+    text-align: center;
+}
+
+/* Стили для ресурсов разной редкости в таблице */
+.resource-row.rarity-common {
+    background-color: rgba(160, 160, 160, 0.1);
+}
+
+.resource-row.rarity-uncommon {
+    background-color: rgba(76, 175, 80, 0.1);
+}
+
+.resource-row.rarity-rare {
+    background-color: rgba(33, 150, 243, 0.1);
+}
+
+.resource-row.rarity-epic {
+    background-color: rgba(156, 39, 176, 0.1);
+}
+
+.resource-row.rarity-legendary {
+    background-color: rgba(255, 152, 0, 0.1);
+}
+
+/* Стили для вероятности */
+.probability-value {
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.high-probability {
+    background-color: rgba(76, 175, 80, 0.2);
+    color: #2E7D32;
+}
+
+.medium-probability {
+    background-color: rgba(255, 152, 0, 0.2);
+    color: #E65100;
+}
+
+.low-probability {
+    background-color: rgba(244, 67, 54, 0.2);
+    color: #C62828;
+}
+
+/* Обновленные стили для навигации */
+#main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 0 10px 0;
+    width: 100%;
+}
+
+.nav-button {
+    flex: 1;
+    background-color: var(--primary-color);
+    color: white;
+    border: 2px solid var(--accent-color);
+    border-radius: 4px;
+    padding: 8px 5px;
+    cursor: pointer;
+    font-family: var(--ui-font);
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    text-align: center;
+    margin: 0;
+    white-space: nowrap;
+}
+
+/* Для более узких экранов уменьшаем отступы и размер шрифта */
+@media screen and (max-width: 400px) {
+    .nav-button {
+        padding: 8px 3px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Компактная таблица ресурсов */
+.resources-table-container {
+    margin-top: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    background-color: var(--light-color);
+}
+
+.resources-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--ui-font);
+    font-size: 0.85rem; /* Уменьшение шрифта для всей таблицы */
+}
+
+.resources-table th {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: left;
+    padding: 6px 8px; /* Уменьшенные отступы */
+    font-weight: bold;
+    font-size: 0.8rem; /* Уменьшение шрифта для заголовков */
+}
+
+.resources-table td {
+    padding: 6px 8px; /* Уменьшенные отступы */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    line-height: 1.2; /* Уменьшение высоты строки */
+}
+
+.resource-row:last-child td {
+    border-bottom: none;
+}
+
+.resource-row:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Обновленные ширины колонок */
+.resource-name-col {
+    width: 40%;
+}
+
+.resource-rarity-col {
+    width: 22%;
+}
+
+.resource-yield-col {
+    width: 18%;
+    text-align: center;
+}
+
+.resource-probability-col {
+    width: 20%;
+    text-align: center;
+}
+
+/* Предотвращение переноса текста на новую строку */
+.resource-name {
+    font-weight: 600; /* Чуть меньше жирный шрифт */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    max-width: 100%;
+    font-size: 0.8rem; /* Уменьшенный размер шрифта для названий */
+    letter-spacing: -0.2px; /* Немного уменьшаем расстояние между буквами */
+}
+
+/* Компактные стили для отображения вероятности */
+.probability-value {
+    padding: 2px 5px; /* Уменьшенные отступы */
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 0.8rem; /* Уменьшение шрифта */
+}
+
+/* Для мобильных устройств */
+@media screen and (max-width: 380px) {
+    .resources-table {
+        font-size: 0.75rem; /* Еще меньший шрифт на маленьких экранах */
+    }
+    
+    .resources-table th {
+        padding: 4px 5px;
+        font-size: 0.75rem;
+    }
+    
+    .resources-table td {
+        padding: 4px 5px;
+    }
+    
+    .probability-value {
+        padding: 1px 3px;
+        font-size: 0.75rem;
+    }
+}
+
+/* Стили для выпадающего списка ресурсов */
+.resources-dropdown {
+    margin-top: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: var(--light-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.dropdown-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.dropdown-title {
+    font-weight: bold;
+    font-size: 1rem;
+    font-family: var(--ui-font);
+}
+
+.dropdown-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.dropdown-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.toggle-icon {
+    display: inline-block;
+    transition: transform 0.2s;
+}
+
+.dropdown-content {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Обновленные стили таблицы для выпадающего списка */
+.resources-table-container {
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.resources-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--ui-font);
+    font-size: 0.85rem;
+}
+
+.resources-table th {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--text-color);
+    text-align: left;
+    padding: 8px 10px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.resources-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    line-height: 1.2;
+}
+
+.resource-name {
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    max-width: 100%;
+    font-size: 0.8rem;
+    letter-spacing: -0.2px;
+}
+
+/* Стили для вероятности */
+.probability-value {
+    padding: 2px 5px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.high-probability {
+    background-color: rgba(76, 175, 80, 0.2);
+    color: #2E7D32;
+}
+
+.medium-probability {
+    background-color: rgba(255, 152, 0, 0.2);
+    color: #E65100;
+}
+
+.low-probability {
+    background-color: rgba(244, 67, 54, 0.2);
+    color: #C62828;
+}
+
+/* Улучшенные стили для кнопок добычи */
+#start-mining {
+    width: 80%;
+    max-width: 200px;
+    padding: 15px 20px;
+    margin: 10px auto;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2), 0 0 0 2px rgba(255, 255, 255, 0.1) inset;
+    transition: all 0.3s ease, transform 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#start-mining:before {
+    content: none;
+
+}
+
+#start-mining:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25), 0 0 0 2px rgba(255, 255, 255, 0.2) inset;
+    background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+}
+
+#start-mining:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+/* Анимированный индикатор активности добычи */
+@keyframes mining-pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 4px 12px rgba(244, 67, 54, 0.4), 0 0 0 0 rgba(244, 67, 54, 0.6);
+    }
+    50% {
+        transform: scale(1.03);
+        box-shadow: 0 4px 20px rgba(244, 67, 54, 0.6), 0 0 0 6px rgba(244, 67, 54, 0.2);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 4px 12px rgba(244, 67, 54, 0.4), 0 0 0 0 rgba(244, 67, 54, 0.6);
+    }
+}
+
+@keyframes mining-glow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.mining-active {
+    animation: mining-pulse 2s infinite, mining-glow 3s infinite !important;
+    background: linear-gradient(270deg, #f44336, #e91e63, #f44336) !important;
+    background-size: 200% 200% !important;
+    border-color: transparent !important;
+    color: white !important;
+    position: relative;
+}
+
+.mining-active:before {
+    content: none;
+}
+
+@keyframes border-pulse {
+    0% {
+        border-color: rgba(244, 67, 54, 0);
+    }
+    50% {
+        border-color: rgba(244, 67, 54, 0.5);
+    }
+    100% {
+        border-color: rgba(244, 67, 54, 0);
+    }
+}
+
+/* Добавляем иконки */
+
+.mining-active:before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M5.7 10.3c.4-.4 1-.4 1.4 0L12 15.2l4.9-4.9c.4-.4 1-.4 1.4 0 .4.4.4 1 0 1.4l-5.6 5.6c-.2.2-.5.3-.7.3-.3 0-.5-.1-.7-.3l-5.6-5.6c-.4-.4-.4-1 0-1.4zM12 24c6.6 0 12-5.4 12-12S18.6 0 12 0 0 5.4 0 12s5.4 12 12 12zm0-22c5.5 0 10 4.5 10 10s-4.5 10-10 10S2 17.5 2 12 6.5 2 12 2z'/%3E%3C/svg%3E");
+    position: static;
+    animation: none;
+}
+
+/* Улучшенные стили для виджета автоматической добычи */
+.auto-mining-widget {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+    border-radius: 12px;
+    padding: 20px;
+    margin: 15px 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(139, 69, 19, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.auto-mining-widget:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.auto-mining-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 12px;
+    color: var(--primary-color);
+    text-align: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mining-icon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238B4513'%3E%3Cpath d='M14.06 9l.94.94L5.92 19H5v-.92L14.06 9m3.6-6c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29m-3.6 3.19L3 17.25V21h3.75L17.81 9.94l-3.75-3.75z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.mining-description {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Улучшенный контейнер для кнопки */
+.mining-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    position: relative;
+}
+
+/* Эффект блеска при наведении */
+#start-mining:after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to right, 
+        rgba(255, 255, 255, 0) 0%, 
+        rgba(255, 255, 255, 0.3) 50%, 
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(30deg);
+    transition: transform 0.5s;
+    opacity: 0;
+}
+
+#start-mining:hover:after {
+    opacity: 1;
+    transform: rotate(30deg) translate(90%, -10%);
+    transition: transform 0.7s, opacity 0.5s;
+}
+
+/* Анимированный фон при активной добыче */
+@keyframes resource-flow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.auto-mining-widget.active {
+    background: linear-gradient(270deg, rgba(255, 255, 255, 0.7), rgba(244, 67, 54, 0.05), rgba(255, 255, 255, 0.7));
+    background-size: 200% 200%;
+    animation: resource-flow 5s ease infinite;
+    border-color: rgba(244, 67, 54, 0.3);
+}
+
+/* Модификатор для активного состояния виджета */
+.auto-mining-widget.active .mining-description {
+    color: #d32f2f;
+    font-weight: 500;
+}
+
+/* Состояние после успешной добычи */
+@keyframes success-pulse {
+    0% {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    50% {
+        box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4);
+    }
+    100% {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.mining-success-flash {
+    animation: success-pulse 1s ease;
+}
+
+/* Стили для индикаторов успеха и неудачи при добыче */
+.mining-status-indicator {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    margin-top: 15px;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-left: 4px solid #FFA726;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-size: 0.9rem;
+    animation: fadeInDown 0.5s ease;
+    transition: all 0.3s ease;
+}
+
+.mining-status-indicator.success-indicator {
+    border-left-color: #4CAF50;
+    background-color: rgba(76, 175, 80, 0.1);
+}
+
+.mining-status-indicator.failure-indicator {
+    border-left-color: #F44336;
+    background-color: rgba(244, 67, 54, 0.1);
+}
+
+.status-circle {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #FFA726;
+    margin-right: 10px;
+    animation: pulse-orange 1.5s infinite;
+}
+
+.success-indicator .status-circle {
+    background-color: #4CAF50;
+    animation: pulse-green 1.5s infinite;
+}
+
+.failure-indicator .status-circle {
+    background-color: #F44336;
+    animation: pulse-red 1.5s infinite;
+}
+
+@keyframes pulse-orange {
+    0% {
+        transform: scale(0.8);
+        box-shadow: 0 0 0 0 rgba(255, 167, 38, 0.7);
+    }
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 6px rgba(255, 167, 38, 0);
+    }
+    100% {
+        transform: scale(0.8);
+        box-shadow: 0 0 0 0 rgba(255, 167, 38, 0);
+    }
+}
+
+@keyframes pulse-green {
+    0% {
+        transform: scale(0.8);
+        box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
+    }
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 6px rgba(76, 175, 80, 0);
+    }
+    100% {
+        transform: scale(0.8);
+        box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Стили для журнала добычи с анимацией */
+#mining-results-section {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5));
+    border: 1px solid rgba(139, 69, 19, 0.2);
+    border-radius: 12px;
+    padding: 15px;
+    margin-top: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+}
+
+#mining-results-section h3 {
+    color: var(--primary-color);
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+#mining-results-section h3:after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 2px;
+    background-color: var(--accent-color);
+}
+
+#mining-log {
+    max-height: 250px;
+    overflow-y: auto;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+    margin-top: 10px;
+    font-family: var(--ui-font);
+    font-size: 0.95rem;
+}
+
+.mining-result {
+    animation: log-appear 0.3s ease;
+    padding: 8px;
+    margin-bottom: 6px;
+    border-left: 3px solid transparent;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+}
+
+@keyframes log-appear {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.mining-success {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.mining-success:hover {
+    background-color: rgba(76, 175, 80, 0.1);
+    transform: translateX(3px);
+}
+
+.mining-failure:hover {
+    background-color: rgba(244, 67, 54, 0.1);
+    transform: translateX(3px);
+}
+
+/* Стили для элементов журнала */
+.log-time {
+    color: #666;
+    font-size: 0.9rem;
+    margin-right: 5px;
+}
+
+.log-action {
+    font-weight: 500;
+    margin-right: 5px;
+}
+
+.log-amount {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.mining-success .log-amount {
+    color: var(--success-color);
+}
+
+.log-time-elapsed {
+    font-size: 0.85rem;
+    color: #888;
+    margin-left: 5px;
+    font-style: italic;
+}
+
+.log-system {
+    color: #5c6bc0;
+    font-weight: 500;
+}
+
+.log-error {
+    color: #d32f2f;
+    font-size: 0.9rem;
+    margin-left: 5px;
+    font-style: italic;
+}
+
+/* Улучшенная полоса прокрутки для журнала */
+#mining-log::-webkit-scrollbar {
+    width: 6px;
+}
+
+#mining-log::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+#mining-log::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+#mining-log::-webkit-scrollbar-thumb:hover {
+    background-color: var(--primary-color);
+}
+
+/* Улучшенное форматирование ресурсов в журнале */
+.resource-name-in-log {
+    font-weight: bold;
+}
+
+.mining-success .resource-name-in-log {
+    color: var(--success-color);
+}
+/* Фиксированная высота для контейнера журнала добычи */
+#mining-results-section {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5));
+    border: 1px solid rgba(139, 69, 19, 0.2);
+    border-radius: 12px;
+    padding: 15px;
+    margin-top: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+    /* Фиксированная высота для предотвращения скачков страницы */
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+}
+
+#mining-results-section h3 {
+    color: var(--primary-color);
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+    position: relative;
+    /* Явно задаем нулевую усадку для заголовка */
+    flex-shrink: 0;
+}
+
+#mining-results-section h3:after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 2px;
+    background-color: var(--accent-color);
+}
+
+/* Делаем контейнер журнала растягиваемым внутри родителя */
+#mining-log {
+    max-height: none; /* Убираем max-height */
+    height: 100%; /* Заполняем всё доступное пространство */
+    flex-grow: 1; /* Разрешаем контейнеру расти */
+    overflow-y: auto;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+    margin-top: 10px;
+    font-family: var(--ui-font);
+    font-size: 0.95rem;
+    /* Включаем прокрутку из коробки */
+    overflow-y: auto;
+    /* Дополнительно: определяем поведение прокрутки для улучшенного UX */
+    scroll-behavior: smooth;
+}
+
+/* Улучшенная полоса прокрутки для журнала */
+#mining-log::-webkit-scrollbar {
+    width: 6px;
+}
+
+#mining-log::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+#mining-log::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+#mining-log::-webkit-scrollbar-thumb:hover {
+    background-color: var(--primary-color);
+}
+
+/* Анимация появления записей в журнале без изменения размера */
+.mining-result {
+    animation: log-appear 0.3s ease;
+    padding: 8px;
+    margin-bottom: 6px;
+    border-left: 3px solid transparent;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+}
+
+/* Адаптивная высота контейнера журнала для мобильных устройств */
+@media screen and (max-width: 480px) {
+    #mining-results-section {
+        height: 300px; /* Меньшая высота для маленьких экранов */
+    }
+}
+
+/* Улучшаем анимацию появления записей - делаем её более плавной */
+@keyframes log-appear {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Стили для инвентаря */
+.game-screen {
+    overflow-y: auto; /* Разрешаем прокрутку внутри экрана */
+    -ms-overflow-style: none;  /* IE и Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Скрываем полосу прокрутки для WebKit браузеров (Chrome, Safari) */
+.game-screen::-webkit-scrollbar {
+    display: none;
+}
+
+#full-inventory-container {
+    padding: 15px;
+}
+
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.inventory-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--light-color);
+    border: 2px solid var(--secondary-color);
+    border-radius: 8px;
+    padding: 12px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.inventory-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.item-info {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.item-name {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.item-amount {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.item-rarity {
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+.item-actions {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.item-actions .game-button {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+/* Стили для разной редкости ресурсов в инвентаре */
+
+.inventory-item.rarity-common {
+    background-color: #F0F0F0;
+    border-color: #C0C0C0;
+}
+
+.inventory-item.rarity-uncommon {
+    background-color: #D1F2EB;
+    border-color: #76D7C4;
+}
+
+.inventory-item.rarity-rare {
+    background-color: #D6EAF8;
+    border-color: #85C1E9;
+}
+
+.inventory-item.rarity-epic {
+    background-color: #E8DAEF;
+    border-color: #BB8FCE;
+}
+
+.inventory-item.rarity-legendary {
+    background-color: #FDEBD0;
+    border-color: #F39C12;
+}
+
+/* Стили для аукционного интерфейса */
+
+/* Аукционные вкладки */
+#auction-tabs {
+    display: flex;
+    border-bottom: 2px solid var(--secondary-color);
+    margin-bottom: 20px;
+}
+
+.auction-tab {
+    background-color: var(--light-color);
+    border: 1px solid var(--secondary-color);
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-family: var(--ui-font);
+    font-weight: bold;
+    margin-right: 5px;
+    transition: all 0.3s;
+    position: relative;
+    top: 2px;
+}
+
+.auction-tab.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.auction-tab:hover:not(.active) {
+    background-color: rgba(139, 69, 19, 0.1);
+}
+
+.auction-tab-content {
+    display: none;
+    padding: 20px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 0 8px 8px 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.auction-tab-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Заголовок вкладки с действиями */
+.tab-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(139, 69, 19, 0.2);
+    padding-bottom: 10px;
+}
+
+.tab-header h3 {
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.tab-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.refresh-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+}
+
+.refresh-link:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+.refresh-link:before {
+    content: "↻";
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+/* Карточки аукционов */
+.auction-item {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+    border: 2px solid var(--secondary-color);
+    border-radius: 10px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.auction-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.auction-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(139, 69, 19, 0.1);
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(139, 69, 19, 0.2);
+}
+
+.auction-header h4 {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    text-align: left;
+}
+
+.auction-time {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.auction-ending-soon .auction-time {
+    background-color: #f44336;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.auction-details {
+    display: flex;
+    padding: 15px;
+}
+
+.auction-info {
+    flex: 2;
+    padding-right: 15px;
+}
+
+.auction-info p {
+    margin: 8px 0;
+    font-size: 0.95rem;
+}
+
+.auction-actions {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bid-button, .cancel-auction-button {
+    min-width: 120px;
+}
+
+/* Стили для разной редкости */
+.auction-item.rarity-common {
+    border-color: #A0A0A0;
+}
+
+.auction-item.rarity-uncommon {
+    border-color: #4CAF50;
+}
+
+.auction-item.rarity-rare {
+    border-color: #2196F3;
+}
+
+.auction-item.rarity-epic {
+    border-color: #9C27B0;
+}
+
+.auction-item.rarity-legendary {
+    border-color: #FF9800;
+}
+
+/* Форма создания аукциона */
+.auction-form {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.auction-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.auction-form select,
+.auction-form input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.auction-form input:focus,
+.auction-form select:focus {
+    border-color: var(--accent-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(218, 165, 32, 0.2);
+}
+
+.price-hint {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+#create-auction-button {
+    margin-top: 20px;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.1rem;
+    border: none;
+    padding: 15px;
+    transition: all 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#create-auction-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+}
+
+/* Дополнительный блок информации об аукционах */
+.auction-info-block {
+    margin-top: 30px;
+    padding: 15px;
+    border: 1px dashed var(--secondary-color);
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.auction-info-block h4 {
+    margin-top: 0;
+    color: var(--primary-color);
+    text-align: left;
+    font-size: 1.1rem;
+}
+
+.auction-info-block ul {
+    padding-left: 20px;
+    margin-bottom: 0;
+}
+
+.auction-info-block li {
+    margin-bottom: 8px;
+    color: #555;
+}
+
+/* Модальное окно для ставок */
+.bid-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.bid-form p {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.gold-available {
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+    text-align: right !important;
+}
+
+.bid-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.bid-form input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+    font-size: 1.1rem;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.bid-form input:focus {
+    border-color: var(--accent-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(218, 165, 32, 0.2);
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.modal-buttons button {
+    min-width: 120px;
+}
+
+/* Индикатор текущих ставок */
+.current-bid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px dashed rgba(139, 69, 19, 0.3);
+}
+
+.bid-price {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.bid-user {
+    color: #555;
+}
+
+.no-bids {
+    text-align: center;
+    font-style: italic;
+    color: #777;
+    margin: 10px 0;
+}
+
+/* Индикатор загрузки */
+.loading {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-style: italic;
+}
+
+.loading:after {
+    content: "...";
+    animation: dots 1.5s infinite;
+}
+
+@keyframes dots {
+    0% { content: "."; }
+    33% { content: ".."; }
+    66% { content: "..."; }
+}
+
+/* Стили для пустого списка аукционов */
+.empty-auctions {
+    text-align: center;
+    padding: 30px;
+    font-style: italic;
+    color: #777;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+/* Индикатор успешной ставки */
+.bid-success-indicator {
+    background-color: rgba(76, 175, 80, 0.1);
+    border-left: 4px solid #4CAF50;
+    padding: 15px;
+    border-radius: 4px;
+    animation: fadeIn 0.5s ease;
+}
+
+.bid-success-indicator h3 {
+    color: #2E7D32;
+    margin-top: 0;
+}
+
+/* Индикатор текущей цены */
+.current-price {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+/* Информация о начальной цене */
+.starting-price {
+    font-size: 0.9rem;
+    color: #777;
+    text-decoration: line-through;
+    margin-left: 5px;
+}
+
+.starting-price-full {
+    color: #555;
+}
+
+/* Стили для неактивных кнопок */
+.game-button:disabled {
+    background-color: #ccc !important;
+    color: #666 !important;
+    border-color: #bbb !important;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Улучшения для мобильного вида */
+@media screen and (max-width: 480px) {
+    .auction-details {
+        flex-direction: column;
+    }
+    
+    .auction-info {
+        padding-right: 0;
+        padding-bottom: 15px;
+    }
+    
+    .auction-tab {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .tab-header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+    
+    .auction-header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+    
+    .auction-time {
+        align-self: flex-end;
+    }
+    
+    .auction-form {
+        padding: 15px;
+    }
+}/* Стили для аукционного интерфейса */
+
+/* Аукционные вкладки */
+#auction-tabs {
+    display: flex;
+    border-bottom: 2px solid var(--secondary-color);
+    margin-bottom: 20px;
+}
+
+.auction-tab {
+    background-color: var(--light-color);
+    border: 1px solid var(--secondary-color);
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-family: var(--ui-font);
+    font-weight: bold;
+    margin-right: 5px;
+    transition: all 0.3s;
+    position: relative;
+    top: 2px;
+}
+
+.auction-tab.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.auction-tab:hover:not(.active) {
+    background-color: rgba(139, 69, 19, 0.1);
+}
+
+.auction-tab-content {
+    display: none;
+    padding: 20px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 0 8px 8px 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.auction-tab-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Карточки аукционов */
+.auction-item {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+    border: 2px solid var(--secondary-color);
+    border-radius: 10px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.auction-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.auction-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(139, 69, 19, 0.1);
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(139, 69, 19, 0.2);
+}
+
+.auction-header h4 {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    text-align: left;
+}
+
+.auction-time {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.auction-ending-soon .auction-time {
+    background-color: #f44336;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.auction-details {
+    display: flex;
+    padding: 15px;
+}
+
+.auction-info {
+    flex: 2;
+    padding-right: 15px;
+}
+
+.auction-info p {
+    margin: 8px 0;
+    font-size: 0.95rem;
+}
+
+.auction-actions {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bid-button, .cancel-auction-button {
+    min-width: 120px;
+}
+
+/* Стили для разной редкости */
+.auction-item.rarity-common {
+    border-color: #A0A0A0;
+}
+
+.auction-item.rarity-uncommon {
+    border-color: #4CAF50;
+}
+
+.auction-item.rarity-rare {
+    border-color: #2196F3;
+}
+
+.auction-item.rarity-epic {
+    border-color: #9C27B0;
+}
+
+.auction-item.rarity-legendary {
+    border-color: #FF9800;
+}
+
+/* Форма создания аукциона */
+.auction-form {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.auction-form label {
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.auction-form select,
+.auction-form input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 12px;
+}
+
+.auction-form input:focus,
+.auction-form select:focus {
+    border-color: var(--accent-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(218, 165, 32, 0.2);
+}
+
+#create-auction-button {
+    margin-top: 20px;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.1rem;
+    border: none;
+    padding: 15px;
+    transition: all 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#create-auction-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+}
+
+/* Модальное окно для ставок */
+.bid-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.bid-form p {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.bid-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.bid-form input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+    font-size: 1.1rem;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.bid-form input:focus {
+    border-color: var(--accent-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(218, 165, 32, 0.2);
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.modal-buttons button {
+    min-width: 120px;
+}
+
+/* Индикатор текущих ставок */
+.current-bid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px dashed rgba(139, 69, 19, 0.3);
+}
+
+.bid-price {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.bid-user {
+    color: #555;
+}
+
+.no-bids {
+    text-align: center;
+    font-style: italic;
+    color: #777;
+    margin: 10px 0;
+}
+
+/* Индикатор загрузки */
+.loading {
+    text-align: center;
+    padding: 20px;
+}
+
+.loading:after {
+    content: "...";
+    animation: dots 1.5s infinite;
+}
+
+@keyframes dots {
+    0% { content: "."; }
+    33% { content: ".."; }
+    66% { content: "..."; }
+}
+
+/* Стили для пустого списка аукционов */
+.empty-auctions {
+    text-align: center;
+    padding: 30px;
+    font-style: italic;
+    color: #777;
+}
+
+/* Индикатор успешной ставки */
+.bid-success-indicator {
+    background-color: rgba(76, 175, 80, 0.2);
+    border-left: 4px solid #4CAF50;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border-radius: 4px;
+}
+
+/* Индикатор текущей цены */
+.current-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+/* Информация о начальной цене */
+.starting-price {
+    font-size: 0.9rem;
+    color: #777;
+    text-decoration: line-through;
+    margin-left: 5px;
+}
+
+/* Улучшения для мобильного вида */
+@media screen and (max-width: 480px) {
+    .auction-details {
+        flex-direction: column;
+    }
+    
+    .auction-info {
+        padding-right: 0;
+        padding-bottom: 15px;
+    }
+    
+    .auction-tab {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+}
+
+.market-prices-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.market-prices-table thead {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.market-prices-table th {
+    padding: 10px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.market-prices-table td {
+    padding: 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.market-prices-table .resource-name-col {
+    font-weight: bold;
+}
+
+.market-prices-table .resource-actions-col {
+    text-align: center;
+}
+
+.view-history-button {
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.view-history-button:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Адаптивность для мобильных */
+@media screen and (max-width: 600px) {
+    .market-prices-table {
+        font-size: 0.8rem;
+    }
+    
+    .market-prices-table th,
+    .market-prices-table td {
+        padding: 8px;
+    }
+    
+    /* Скрываем некоторые столбцы на маленьких экранах */
+    .market-prices-table .resource-base-price-col,
+    .market-prices-table .resource-actions-col {
+        display: none;
+    }
+}
+
+.market-prices-table-wrapper {
+    max-height: 500px; /* Ограничиваем высоту */
+    overflow-y: auto; /* Добавляем вертикальную прокрутку */
+    border: 1px solid rgba(139, 69, 19, 0.2);
+    border-radius: 8px;
+}
+
+.market-prices-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem; /* Уменьшаем шрифт */
+}
+
+.market-prices-table thead {
+    position: sticky; /* Закрепляем заголовок */
+    top: 0;
+    background-color: var(--primary-color);
+    color: white;
+    z-index: 10; /* Поверх контента */
+}
+
+.market-prices-table th {
+    padding: 8px; /* Уменьшаем отступы */
+    text-align: left;
+    font-weight: bold;
+}
+
+.market-prices-table td {
+    padding: 8px; /* Уменьшаем отступы */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.market-prices-table .resource-name-col {
+    font-weight: bold;
+    white-space: nowrap; /* Запрещаем перенос */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Многоточие при переполнении */
+    max-width: 150px; /* Ограничиваем ширину */
+}
+
+/* Адаптивность для мобильных */
+@media screen and (max-width: 600px) {
+    .market-prices-table {
+        font-size: 0.75rem; /* Еще меньше шрифт */
+    }
+    
+    .market-prices-table th,
+    .market-prices-table td {
+        padding: 6px; /* Еще меньше отступы */
+    }
+}

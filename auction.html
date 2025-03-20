@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Аукцион - Ресурсная Империя</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:wght@400;600&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <header>
+            <div class="header-top">
+                <h1 class="game-title">Ресурсная Империя</h1>
+                <button id="login-button" class="login-button">Войти</button>
+            </div>
+            
+            <div id="user-info">
+                <span id="player-name">Гость</span>
+                <span id="player-gold">100 золота</span>
+            </div>
+            
+            <nav id="main-nav">
+                <button id="nav-locations" class="nav-button">Локации</button>
+                <button id="nav-auction" class="nav-button active">Аукцион</button>
+                <button id="nav-inventory" class="nav-button">Инвентарь</button>
+                <button id="nav-stats" class="nav-button">Статистика</button>
+            </nav>
+        </header>
+
+        <div id="game-content">
+            <div id="welcome-screen" class="game-screen">
+                <div class="welcome-panel">
+                    <h2>Добро пожаловать!</h2>
+                    <p>Исследуйте локации, добывайте ресурсы и участвуйте в аукционах.</p>
+                    
+                    <div class="login-form">
+                        <h3>Вход в игру</h3>
+                        <input type="text" id="username" placeholder="Имя пользователя">
+                        <input type="password" id="password" placeholder="Пароль">
+                        <button id="login-submit" class="game-button">Войти</button>
+                        <button id="register-button" class="game-button secondary">Регистрация</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="auction-screen" class="game-screen active">
+                <h2>Аукционный дом</h2>
+                
+                <div id="auction-tabs">
+                    <button class="auction-tab active" data-tab="active-auctions">Активные</button>
+                    <button class="auction-tab" data-tab="my-auctions">Мои</button>
+                    <button class="auction-tab" data-tab="create-auction">Создать</button>
+                </div>
+                
+                <div id="auction-content">
+                    <div id="active-auctions" class="auction-tab-content active">
+                        <div id="auctions-loading" class="loading" style="display:none;">Загрузка аукционов...</div>
+                        <div id="auctions-list">
+                            <!-- Аукционы будут добавлены через JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div id="my-auctions" class="auction-tab-content">
+                        <div id="my-auctions-loading" class="loading" style="display:none;">Загрузка ваших аукционов...</div>
+                        <div id="my-auctions-list">
+                            <!-- Мои аукционы будут добавлены через JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div id="create-auction" class="auction-tab-content">
+                        <h3>Создание аукциона</h3>
+                        <div class="auction-form">
+                            <label for="auction-resource">Ресурс:</label>
+                            <select id="auction-resource">
+                                <!-- Опции будут добавлены через JavaScript -->
+                            </select>
+                            
+                            <label for="auction-quantity">Количество:</label>
+                            <input type="number" id="auction-quantity" min="1" value="1">
+                            
+                            <label for="auction-start-price">Начальная цена:</label>
+                            <input type="number" id="auction-start-price" min="1" value="10">
+                            <div id="price-hint" class="price-hint"></div>
+                            
+                            <label for="auction-duration">Длительность (часы):</label>
+                            <input type="number" id="auction-duration" min="1" max="48" value="24">
+                            
+                            <button id="create-auction-button" class="game-button">Создать аукцион</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <nav id="footer-nav">
+                <button id="nav-locations-footer" class="nav-button">Локации</button>
+                <button id="nav-auction-footer" class="nav-button active">Аукцион</button>
+                <button id="nav-inventory-footer" class="nav-button">Инвентарь</button>
+                <button id="nav-stats-footer" class="nav-button">Статистика</button>
+            </nav>
+        </footer>
+    </div>
+
+    <div id="notifications-area"></div>
+
+    <div id="modal-overlay" class="hidden">
+        <div id="modal-window">
+            <div id="modal-header">
+                <h3 id="modal-title">Заголовок окна</h3>
+                <button id="modal-close">&times;</button>
+            </div>
+            <div id="modal-content">
+                <!-- Содержимое модального окна -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Шаблоны для аукционов -->
+    <template id="auction-item-template">
+        <div class="auction-item">
+            <div class="auction-header">
+                <h4>{{resource_name}} ({{quantity}} шт.)</h4>
+                <div class="auction-time">{{time_left}}</div>
+            </div>
+            <div class="auction-details">
+                <div class="auction-info">
+                    <p>Продавец: {{seller}}</p>
+                    <p>Текущая цена: <span class="current-price">{{current_price}}</span> 
+                        <span class="starting-price">{{starting_price}}</span> золота</p>
+                    <p>Текущий покупатель: {{current_bidder}}</p>
+                    <p>Количество ставок: {{bids_count}}</p>
+                </div>
+                <div class="auction-actions">
+                    <button class="game-button bid-button" data-id="{{id}}" data-price="{{current_price}}">Сделать ставку</button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="my-auction-item-template">
+        <div class="auction-item">
+            <div class="auction-header">
+                <h4>{{resource_name}} ({{quantity}} шт.)</h4>
+                <div class="auction-time">{{time_left}}</div>
+            </div>
+            <div class="auction-details">
+                <div class="auction-info">
+                    <p>Начальная цена: {{starting_price}} золота</p>
+                    <p>Текущая цена: <span class="current-price">{{current_price}}</span> золота</p>
+                    <p>Текущий покупатель: {{current_bidder}}</p>
+                    <p>Количество ставок: {{bids_count}}</p>
+                </div>
+                <div class="auction-actions">
+                    <button class="game-button secondary cancel-auction-button" data-id="{{id}}">Отменить</button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="empty-auctions-template">
+        <div class="empty-auctions">
+            <p>Пусто</p>
+        </div>
+    </template>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="game.js"></script>
+    <script src="locations.js"></script>
+    <script src="resources.js"></script>
+    <script src="auction.js"></script>
+    <script src="ui.js"></script>
+    <script>
+        // Инициализация после загрузки страницы
+        $(document).ready(function() {
+            Game.init();
+            
+            // При загрузке сразу переключаемся на экран аукциона
+            if (Game.player.loggedIn) {
+                Auction.loadActiveAuctions();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Рыночные цены - Ресурсная Империя</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:wght@400;600&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="market_styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div id="game-container">
+        <header>
+            <div class="header-top">
+                <h1 class="game-title">Ресурсная Империя</h1>
+                <button id="login-button" class="login-button">Войти</button>
+            </div>
+            
+            <div id="user-info">
+                <span id="player-name">Гость</span>
+                <span id="player-gold">100 золота</span>
+            </div>
+            
+            <nav id="main-nav">
+                <button id="nav-locations" class="nav-button">Локации</button>
+                <button id="nav-market" class="nav-button">Рынок</button>
+                <button id="nav-auction" class="nav-button">Аукцион</button>
+                <button id="nav-inventory" class="nav-button">Инвентарь</button>
+            </nav>
+        </header>
+
+        <div id="game-content">
+            <div id="market-screen" class="game-screen active">
+                <h2>Рыночные цены</h2>
+                <p class="market-description">
+                    Цены на рынке обновляются каждый день на основе объема добычи ресурсов и результатов аукционов.
+                    Следите за изменениями, чтобы покупать дешевле и продавать дороже!
+                </p>
+                
+                <div class="market-controls">
+                    <button id="refresh-market-prices" class="game-button secondary">Обновить цены</button>
+                </div>
+                
+                <div id="market-prices-container">
+                    <div class="loading">Загрузка рыночных цен...</div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <nav id="footer-nav">
+                <button id="nav-locations-footer" class="nav-button">Локации</button>
+                <button id="nav-market-footer" class="nav-button">Рынок</button>
+                <button id="nav-auction-footer" class="nav-button">Аукцион</button>
+                <button id="nav-inventory-footer" class="nav-button">Инвентарь</button>
+            </nav>
+        </footer>
+    </div>
+
+    <div id="notifications-area"></div>
+
+    <div id="modal-overlay" class="hidden">
+        <div id="modal-window">
+            <div id="modal-header">
+                <h3 id="modal-title">Заголовок окна</h3>
+                <button id="modal-close">&times;</button>
+            </div>
+            <div id="modal-content">
+                <!-- Содержимое модального окна -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="game.js"></script>
+    <script src="locations.js"></script>
+    <script src="resources.js"></script>
+    <script src="auction.js"></script>
+    <script src="ui.js"></script>
+    <script src="market_chart.js"></script>
+    <script>
+        // Инициализация после загрузки страницы
+        $(document).ready(function() {
+            // Инициализируем общие модули
+            Game.init();
+            UI.init();
+            
+            // Инициализируем модуль рыночных цен
+            Market.init();
+            
+            // Обработчики для перехода на другие экраны
+            $('#nav-locations, #nav-locations-footer').on('click', function() {
+                window.location.href = 'index.html';
+            });
+            
+            $('#nav-auction, #nav-auction-footer').on('click', function() {
+                window.location.href = 'auction.html';
+            });
+            
+            $('#nav-inventory, #nav-inventory-footer').on('click', function() {
+                if (Game.player.loggedIn) {
+                    window.location.href = 'inventory.html';
+                } else {
+                    UI.showNotification('Сначала войдите в игру', 'error');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

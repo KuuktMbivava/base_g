@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Инвентарь</title>
+  <!-- Можно использовать общий файл стилей проекта -->
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Стили для инвентаря */
+    .inventory-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      justify-content: center;
+    }
+    .inventory-item {
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+      width: 150px;
+      text-align: center;
+    }
+    .inventory-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    .inventory-item .item-image {
+      width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+    }
+    .inventory-item .item-name {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div id="inventory" class="inventory-container">
+    <!-- Пример карточек инвентаря -->
+    <div class="inventory-item">
+      <img class="item-image" src="images/item1.png" alt="Предмет 1">
+      <div class="item-name">Предмет 1</div>
+    </div>
+    <div class="inventory-item">
+      <img class="item-image" src="images/item2.png" alt="Предмет 2">
+      <div class="item-name">Предмет 2</div>
+    </div>
+    <div class="inventory-item">
+      <img class="item-image" src="images/item3.png" alt="Предмет 3">
+      <div class="item-name">Предмет 3</div>
+    </div>
+    <!-- Добавьте дополнительные карточки по необходимости -->
+  </div>
+
+  <script>
+    // Здесь можно добавить дополнительную логику для динамической загрузки инвентаря,
+    // отображения деталей предмета при клике и т.д.
+  </script>
+</body>
+</html>

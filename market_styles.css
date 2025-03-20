@@ -1,0 +1,479 @@
+/* Стили для компактного интерфейса рынка */
+
+.market-container {
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.market-container h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.market-description {
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(139, 69, 19, 0.3);
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-style: italic;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+/* Контроли рынка */
+.market-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.search-container {
+    position: relative;
+    flex: 1;
+    max-width: 200px;
+}
+
+.market-search {
+    width: 100%;
+    padding: 6px 10px 6px 30px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+    font-size: 0.9rem;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>');
+    background-repeat: no-repeat;
+    background-position: 8px center;
+    background-size: 14px;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.filter-button {
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-family: var(--ui-font);
+    font-size: 0.8rem;
+    transition: all 0.2s;
+}
+
+.filter-button:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+.filter-button.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+/* Таблица рыночных цен */
+.market-prices-table-wrapper {
+    border: 1px solid rgba(139, 69, 19, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 15px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.market-prices-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.market-prices-table th {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 0.85rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.market-prices-table td {
+    padding: 6px 10px;
+    border-bottom: 1px solid rgba(139, 69, 19, 0.1);
+    font-size: 0.85rem;
+}
+
+/* Компактная версия таблицы */
+.market-prices-table.compact th {
+    padding: 6px 5px;
+    font-size: 0.8rem;
+}
+
+.market-prices-table.compact td {
+    padding: 4px 5px;
+    font-size: 0.8rem;
+}
+
+.market-prices-table tr:last-child td {
+    border-bottom: none;
+}
+
+.market-prices-table tr:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Стили для строк таблицы по редкости */
+.price-row.rarity-common {
+    background-color: rgba(160, 160, 160, 0.1);
+}
+
+.price-row.rarity-uncommon {
+    background-color: rgba(76, 175, 80, 0.1);
+}
+
+.price-row.rarity-rare {
+    background-color: rgba(33, 150, 243, 0.1);
+}
+
+.price-row.rarity-epic {
+    background-color: rgba(156, 39, 176, 0.1);
+}
+
+.price-row.rarity-legendary {
+    background-color: rgba(255, 152, 0, 0.1);
+}
+
+/* Стили для колонок таблицы */
+.resource-name-col {
+    font-weight: bold;
+    max-width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.resource-base-price-col,
+.resource-current-price-col {
+    text-align: right;
+}
+
+.resource-current-price-col {
+    font-weight: bold;
+}
+
+.resource-change-col {
+    text-align: right;
+}
+
+.price-increase {
+    color: #4CAF50;
+}
+
+.price-decrease {
+    color: #F44336;
+}
+
+.price-unchanged {
+    color: #FFA726;
+}
+
+.resource-actions-col {
+    text-align: center;
+    width: 50px;
+}
+
+.view-history-button {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
+    padding: 2px 5px;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    border-radius: 4px;
+}
+
+.view-history-button:hover {
+    background-color: rgba(139, 69, 19, 0.1);
+}
+
+/* Стили для сортировки */
+.sortable {
+    cursor: pointer;
+    position: relative;
+}
+
+.sortable::after {
+    content: '▼';
+    font-size: 0.7em;
+    margin-left: 5px;
+    opacity: 0.5;
+}
+
+.sortable:hover::after {
+    opacity: 1;
+}
+
+.sort-asc::after {
+    content: '▲';
+    opacity: 1;
+}
+
+.sort-desc::after {
+    content: '▼';
+    opacity: 1;
+}
+
+/* Рыночные рекомендации */
+.market-recommendations {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.recommendation-section {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 6px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.recommendation-section:first-child {
+    border: 1px solid rgba(76, 175, 80, 0.3);
+    background-color: rgba(76, 175, 80, 0.05);
+}
+
+.recommendation-section:last-child {
+    border: 1px solid rgba(244, 67, 54, 0.3);
+    background-color: rgba(244, 67, 54, 0.05);
+}
+
+.recommendation-section h4 {
+    margin: 0 0 8px 0;
+    font-size: 0.95rem;
+    color: var(--primary-color);
+}
+
+.recommendation-section ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.recommendation-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+    font-size: 0.85rem;
+}
+
+.recommendation-item:last-child {
+    border-bottom: none;
+}
+
+.no-recommendations {
+    font-style: italic;
+    color: #777;
+    font-size: 0.85rem;
+    text-align: center;
+    padding: 5px 0;
+}
+
+/* Модальное окно для графика истории цен */
+.price-history-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.price-history-content {
+    background-color: white;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.price-history-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.price-history-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: white;
+    flex: 1;
+}
+
+.period-buttons {
+    display: flex;
+    gap: 5px;
+    margin-right: 10px;
+}
+
+.period-button {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 4px 8px;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.period-button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.period-button.active {
+    background-color: rgba(255, 255, 255, 0.4);
+    font-weight: bold;
+}
+
+.close-chart-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0 5px;
+    line-height: 1;
+}
+
+.price-chart-container {
+    padding: 15px;
+    height: 300px;
+    overflow: hidden;
+}
+
+/* Стили для сообщений */
+.loading-message, .empty-message {
+    text-align: center;
+    padding: 20px;
+    font-style: italic;
+    color: #777;
+}
+
+/* Адаптивность для маленьких экранов */
+@media screen and (max-width: 480px) {
+    .market-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-container {
+        max-width: 100%;
+        margin-bottom: 8px;
+    }
+    
+    .filter-buttons {
+        justify-content: space-between;
+    }
+    
+    .market-prices-table th,
+    .market-prices-table td {
+        padding: 4px;
+        font-size: 0.8rem;
+    }
+    
+    .resource-base-price-col,
+    .resource-actions-col {
+        display: none;
+    }
+    
+    .market-recommendations {
+        grid-template-columns: 1fr;
+    }
+    
+    .price-chart-container {
+        height: 250px;
+    }
+}
+
+/* Добавьте эти стили в market_styles.css */
+
+/* Стиль курсора и подсветка при наведении на строки таблицы */
+.price-row {
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.price-row:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Анимация появления модального окна */
+.price-history-modal {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    display: flex;
+}
+
+.price-history-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.price-history-content {
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.price-history-modal.active .price-history-content {
+    transform: scale(1);
+}
+
+/* Небольшой индикатор при наведении на строку */
+.price-row:hover::after {
+    content: "📈";
+    position: absolute;
+    right: 10px;
+    font-size: 0.8em;
+    opacity: 0.5;
+}
+
+/* Эффект пульсации для кнопки графика */
+@keyframes pulse-button {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.view-history-button:hover {
+    animation: pulse-button 1s infinite;
+    background-color: rgba(139, 69, 19, 0.2);
+}

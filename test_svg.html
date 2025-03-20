@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест SVG</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5dc;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .test-card {
+            width: 200px;
+            border: 2px solid #8B4513;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px;
+            display: inline-block;
+        }
+        
+        .image-container {
+            height: 120px;
+            background-color: #f5f5f5;
+            overflow: hidden;
+        }
+        
+        .image-container svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        
+        .card-info {
+            padding: 10px;
+            text-align: center;
+        }
+        
+        h2 {
+            color: #8B4513;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Тест SVG-изображений для локаций</h1>
+        
+        <div class="test-card">
+            <div class="image-container">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+                    <!-- Лес -->
+                    <rect width="100%" height="70%" fill="#87CEEB" opacity="0.8"/>
+                    <rect width="100%" height="30%" y="70%" fill="#556B2F"/>
+                    <!-- Деревья -->
+                    <rect x="30" y="60" width="8" height="30" fill="#8B4513"/>
+                    <circle cx="34" cy="50" r="15" fill="#228B22"/>
+                    <rect x="70" y="65" width="6" height="25" fill="#8B4513"/>
+                    <circle cx="73" cy="55" r="12" fill="#228B22"/>
+                    <rect x="150" y="70" width="10" height="30" fill="#8B4513"/>
+                    <circle cx="155" cy="55" r="20" fill="#228B22"/>
+                </svg>
+            </div>
+            <div class="card-info">
+                <h2>Зачарованный лес</h2>
+            </div>
+        </div>
+        
+        <div class="test-card">
+            <div class="image-container">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+                    <!-- Горы -->
+                    <rect width="100%" height="70%" fill="#B0E0E6" opacity="0.8"/>
+                    <rect width="100%" height="30%" y="70%" fill="#A0522D"/>
+                    <!-- Горы -->
+                    <polygon points="0,120 50,40 100,90 150,30 200,120" fill="#808080"/>
+                    <polygon points="50,120 80,70 110,120" fill="#A9A9A9"/>
+                    <!-- Снежные шапки -->
+                    <polygon points="48,42 52,42 50,35" fill="white"/>
+                    <polygon points="147,33 153,33 150,25" fill="white"/>
+                </svg>
+            </div>
+            <div class="card-info">
+                <h2>Горные пики</h2>
+            </div>
+        </div>
+        
+        <div class="test-card">
+            <div class="image-container">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+                    <!-- Пещера -->
+                    <rect width="100%" height="100%" fill="#3D3D3D"/>
+                    <path d="M0,0 Q50,30 100,10 T200,20 V120 H0 Z" fill="#2D2D2D"/>
+                    <!-- Сталактиты -->
+                    <path d="M30,0 L33,20 L36,0" fill="#5D5D5D"/>
+                    <path d="M80,0 L83,25 L86,0" fill="#5D5D5D"/>
+                    <path d="M150,0 L153,15 L156,0" fill="#5D5D5D"/>
+                    <!-- Сталагмиты -->
+                    <path d="M50,120 L53,100 L56,120" fill="#5D5D5D"/>
+                    <path d="M120,120 L123,95 L126,120" fill="#5D5D5D"/>
+                    <path d="M170,120 L173,105 L176,120" fill="#5D5D5D"/>
+                    <!-- Кристаллы -->
+                    <polygon points="40,60 45,70 40,80 35,70" fill="#9370DB" opacity="0.7"/>
+                    <polygon points="100,50 105,65 100,80 95,65" fill="#7B68EE" opacity="0.8"/>
+                    <polygon points="160,70 164,80 160,90 156,80" fill="#6A5ACD" opacity="0.7"/>
+                </svg>
+            </div>
+            <div class="card-info">
+                <h2>Глубокие пещеры</h2>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
