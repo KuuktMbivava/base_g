@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="market_styles.css">
     <script src="market_chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="chat_styles.css">
+    <link rel="stylesheet" href="fixed-chat.css">
+    <link rel="stylesheet" href="compact-mining.css">
 </head>
 <body>
     <div id="game-container">
@@ -124,38 +127,8 @@
                     </div>
                 </div>
             </div>
-                <!-- Область чата -->
-    <div id="chat-container">
-        <div id="chat-messages"></div>
-        <div id="chat-input-container">
-          <input type="text" id="chat-input" placeholder="Введите сообщение...">
-          <button id="chat-send-button" class="game-button">Отправить</button>
-        </div>
-      </div>
-  
-      <footer>
-        <nav id="footer-nav">
-          <button id="nav-locations-footer" class="nav-button">Локации</button>
-          <button id="nav-auction-footer" class="nav-button">Аукцион</button>
-          <button id="nav-inventory-footer" class="nav-button">Инвентарь</button>
-          <button id="nav-stats-footer" class="nav-button">Статистика</button>
-        </nav>
-      </footer>
-    </div>
-  
-    <div id="notifications-area"></div>
-  
-    <div id="modal-overlay" class="hidden">
-      <div id="modal-window">
-        <div id="modal-header">
-          <h3 id="modal-title">Заголовок окна</h3>
-          <button id="modal-close">&times;</button>
-        </div>
-        <div id="modal-content">
-          <!-- Содержимое модального окна -->
-        </div>
-      </div>
-    </div>
+
+
 <!-- Экран рынка -->
 <div id="market-screen" class="game-screen">
     <h2>Рыночные цены</h2>
@@ -235,6 +208,26 @@
         </div>
     </div>
 
+    <div id="chat-container">
+        <div id="chat-header">
+            <h3>Общий чат</h3>
+            <div id="chat-status" class="chat-status connecting">
+                <span class="status-indicator"></span>
+                <span class="status-text">Подключение...</span>
+            </div>
+            <div id="chat-message-counter">0 сообщений</div>
+        </div>
+        <div id="chat-messages">
+            <div class="empty-chat">Загрузка сообщений...</div>
+        </div>
+        <div id="chat-input-container">
+            <input type="text" id="chat-input" placeholder="Введите сообщение..." maxlength="500">
+            <button id="chat-send-button" class="chat-button">Отправить</button>
+            <button id="chat-clear-button" class="chat-button" title="Очистить чат">🗑️</button>
+            <div id="chat-sending-indicator" style="display: none;">Отправка...</div>
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         // Инициализация после загрузки страницы
@@ -269,11 +262,29 @@
             });
         });
     </script>
+    <script src="fixed-chat.js"></script>
+    <script>
+        // Инициализация после загрузки страницы
+        $(document).ready(function() {
+            // Расширяем модули после их загрузки
+            $(window).on('load', function() {
+                if (typeof Chat !== 'undefined') {
+                    extendChatModule();
+                }
+                
+                if (typeof Game !== 'undefined') {
+                    extendGameModule();
+                }
+            });
+        });
+    </script>
     <script src="game.js"></script>
     <script src="locations.js"></script>
     <script src="resources.js"></script>
     <script src="auction.js"></script>
     <script src="ui.js"></script>
     <script src="market_ui.js"></script>
+    <script src="chat.js"></script>
+    <script src="compact-mining.js"></script>
 </body>
 </html>

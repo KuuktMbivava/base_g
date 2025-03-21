@@ -1,0 +1,244 @@
+/* Компактные стили для страницы добычи ресурсов */
+
+/* Общий контейнер локации */
+#mining-screen {
+    padding: 10px !important;
+}
+
+/* Заголовок локации */
+#location-header {
+    margin-bottom: 8px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(139, 69, 19, 0.2);
+}
+
+#location-name {
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+#back-to-locations {
+    padding: 4px 8px;
+    font-size: 0.8rem;
+}
+
+/* Описание локации */
+#location-description {
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+    color: #666;
+    font-style: italic;
+    padding: 5px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 4px;
+    max-height: 40px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* Компактный виджет автоматической добычи */
+.auto-mining-widget {
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 8px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+}
+
+.auto-mining-title {
+    font-size: 1rem;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mining-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.mining-description {
+    display: none; /* Скрываем описание */
+}
+
+.mining-controls {
+    display: flex;
+    justify-content: center;
+}
+
+#start-mining {
+    width: 70%;
+    max-width: 150px;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+/* Выпадающий список ресурсов */
+.resources-dropdown {
+    margin-top: 10px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.dropdown-header {
+    padding: 8px 10px;
+}
+
+.dropdown-title {
+    font-size: 0.9rem;
+}
+
+/* Компактная таблица ресурсов */
+.resources-table-container {
+    margin: 0;
+}
+
+.resources-table.compact {
+    width: 100%;
+    font-size: 0.8rem;
+}
+
+.resources-table.compact th {
+    padding: 4px 6px;
+    font-size: 0.75rem;
+}
+
+.resources-table.compact td {
+    padding: 3px 6px;
+    font-size: 0.7rem;
+}
+
+.resource-name-col {
+    width: 32%;
+}
+
+.resource-rarity-col {
+    width: 24%;
+}
+
+.resource-yield-col,
+.resource-probability-col {
+    width: 22%;
+    text-align: center;
+}
+
+.resource-name {
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.probability-value {
+    padding: 1px 3px;
+    border-radius: 8px;
+    font-size: 0.65rem;
+}
+
+/* Компактный индикатор статуса добычи */
+.mining-status-indicator {
+    padding: 6px 8px;
+    margin-top: 8px;
+    font-size: 0.8rem;
+}
+
+.status-circle {
+    width: 8px;
+    height: 8px;
+}
+
+/* Компактный журнал добычи */
+#mining-results-section {
+    padding: 10px;
+    margin-top: 10px;
+    height: auto;
+    min-height: 120px;
+    max-height: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+#mining-results-section h3 {
+    margin: 0 0 8px 0;
+    font-size: 1rem;
+    text-align: center;
+}
+
+#mining-results-section h3:after {
+    display: none; /* Убираем декоративную линию */
+}
+
+#mining-log {
+    padding: 6px;
+    font-size: 0.75rem;
+    flex-grow: 1;
+    margin-top: 5px;
+    max-height: 150px;
+}
+
+.mining-result {
+    padding: 3px 4px;
+    margin-bottom: 2px;
+    border-left-width: 2px;
+}
+
+.log-time {
+    font-size: 0.7rem;
+}
+
+.log-action,
+.log-amount,
+.resource-name-in-log {
+    font-size: 0.75rem;
+}
+
+.log-time-elapsed {
+    display: none; /* Скрываем информацию о времени */
+}
+
+.log-error {
+    font-size: 0.7rem;
+}
+
+/* Для режима активной добычи */
+.mining-active {
+    animation: mining-pulse 1.5s infinite;
+}
+
+/* Анимированный индикатор активности добычи */
+@keyframes mining-pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Анимация ресурсов с удалением избыточных эффектов */
+#start-mining:after {
+    content: none; /* Убираем избыточные эффекты */
+}
+
+.auto-mining-widget.active {
+    background: linear-gradient(270deg, rgba(255, 255, 255, 0.7), rgba(244, 67, 54, 0.05), rgba(255, 255, 255, 0.7));
+    animation: resource-flow 3s ease infinite;
+}
+
+/* Подстройка отступов для мобильных устройств */
+@media screen and (max-width: 480px) {
+    #mining-screen {
+        padding: 5px !important;
+    }
+    
+    #location-name {
+        font-size: 1.1rem;
+    }
+    
+    #mining-results-section {
+        min-height: 100px;
+        max-height: 150px;
+    }
+}
